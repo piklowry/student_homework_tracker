@@ -1,0 +1,3 @@
+= link_to '<i class="icon-ok icon-white"></i> Do it'.html_safe, submissions_path(@submission)
+
+= f.select :cohort_id, Cohort.all.collect {|c| [c.subject, c.id] }

@@ -1,0 +1,32 @@
+= form_for @cohort, :remote => true do |cohort|
+	= cohort.hidden_field :location_id
+	%br
+	= cohort.label :subject
+	%br
+	= cohort.text_field :subject
+	%br
+	= cohort.label :start_date
+	%br
+	= cohort.text_field :start_date
+	%br
+	= cohort.label :end_date
+	%br
+	= cohort.text_field :end_date
+	%br
+	= cohort.submit "Create New", :method => "POST"
+
+/ = form_for @cohort, :remote => true do |cohort|
+/ 		%br
+/ 		= cohort.label :subject
+/ 		%br
+/ 		= cohort.text_field :subject
+/ 		%br
+/ 		= cohort.label :start_date
+/ 		%br
+/ 		= cohort.calendar :start_date
+/ 		%p
+/ 		= cohort.label :end_date
+/ 		%br
+/ 		= cohort.calendar :end_date
+/ 		%br
+/ 		= cohort.submit "Create New", :method => "POST"

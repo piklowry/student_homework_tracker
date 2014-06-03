@@ -1,0 +1,19 @@
+%br
+%br
+
+= form_for @location do |location|
+	= location.hidden_field :cohort_id
+	= location.hidden_field :city
+	= location.hidden_field :state
+	= location.submit "Hello Admin, Add a New Row and Create a New Location Inline", :method => "POST", :onSubmit => "window.location.href=window.location.href"
+
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br

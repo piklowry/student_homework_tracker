@@ -1,0 +1,33 @@
+.row
+  .col-sm-12.col-lg-12
+    %h4
+      %strong 
+    %table.display
+      %thead
+        %tr
+          %th City
+          %th State
+          %th Link to Cohort
+          %th Maybe Student Count
+          %th Remove
+      %tbody
+      - @locations.each do |location|
+        %tr.odd
+          - if can? :manage, location
+            %td= best_in_place location, :city, :type => :input
+          - else
+            %td= location.city
+          - if can? :manage, location
+            %td= best_in_place location, :state, :type => :input
+          - else
+            %td= location.state
+          %td= link_to location.city, location
+          %td.center Maybe student
+          - if can? :manage, location
+            %td.center= link_to "Remove L", location, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
+          - else
+            %td Edit
+          
+
+
+

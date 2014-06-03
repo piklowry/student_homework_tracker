@@ -1,0 +1,20 @@
+%h1 HELLO
+
+= form_for @assignment, :remote => true do |assignment|
+		= assignment.hidden_field :cohort_id
+		= assignment.hidden_field :user_id
+		%br
+		= assignment.label :title
+		%br
+		= assignment.text_field :title
+		%br
+		= assignment.label :description
+		%br
+		= assignment.text_field :description
+		%br
+		= assignment.label :duedate
+		%br
+		= assignment.text_field :due_date
+		%br
+		= assignment.submit "Create New", :method => "POST"
+

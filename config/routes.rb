@@ -8,16 +8,52 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   root 'welcome#index'
-  get "all_locations" => "cohorts#index"
+  get "all_locations" => "locations#index"
 
-  resources :cohorts do 
-    resources :assignments 
-    member do 
-      get :download_photo_pic 
-    end
+  # resources :locations
+  # resources :cohorts
+
+  # resources :assignments do
+  #   resources :submissions 
+  # end
+
+  #   resources :locations, :path => "all_cohorts" 
+  # resources :cohorts, :path => "all_teachers_assignments" 
+  # resources :assignments, :path => "all_student_submissions" 
+  #   resources :submissions, :path => "one_student_submission"      
+  resources :comments
+
+  resources :locations, :path => "all_cohorts" 
+  resources :cohorts, :path => "all_teachers_assignments" 
+  resources :assignments, :path => "all_student_submissions" 
+  resources :submissions, :path => "one_student_submission"      
   
-    # makes routes like 'wishlists/1/items', which should have a page with all the items for the wishlist with id 1,the => pattern 'wishlists/:wishlitst_id/items/:id'...will know that all items belond to this wishlist
-  end
+  #   resources :locations 
+  # resources :cohorts 
+  # resources :assignments do
+  #   resources :submissions   
+  # end
+  
+# member do 
+#           get :download_photo_pic 
+#       end
+#   resources :locations do
+#     resources :cohorts do
+#       resources :assignments do 
+#         resources :submissions  
+#         member do 
+#           get :download_photo_pic 
+#         end
+#     end
+#   end
+# end
+  
+  # resources :assignments do
+  #   resources :submissions 
+  #   member do 
+  #     get :download_photo_pic 
+  #   end
+  # end
 
 
   # Example of regular route:

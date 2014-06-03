@@ -1,0 +1,107 @@
+.row
+  .col-sm-12.col-lg-12
+    %h4
+      %strong 
+    %table.display
+      %thead
+        %tr
+          %th Subject
+          %th Teacher
+          %th Start_date
+          %th End_date
+          %th Delete
+      %tbody
+      - @location.cohorts.each do |cohort|
+        %tr.odd
+          - if can? :manage, cohort
+            %td= best_in_place cohort, :subject, :type => :input
+          - else
+            %td= cohort.subject
+          - if can? :manage, cohort
+            %td= best_in_place cohort, :teacher, :type => :input
+          - else
+            %td= cohort.teacher
+          - if can? :manage, cohort
+            %td= link_to cohort.subject, cohort
+          - else
+            %td= cohort.start_date
+          - if current_user.cohort_id == cohort.id
+            %td.center= link_to cohort.subject, cohort
+          - else
+            %td= cohort.subject
+          - if can? :manage, cohort
+            %td.center= link_to "Delete", cohort, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
+          - else
+            %td Edit
+
+/ .row
+/   .col-sm-12.col-lg-12
+/     %h4
+/       %strong 
+/     %table.display
+/       %thead
+/         %tr
+/           %th Subject
+/           %th Teacher
+/           %th Start_date
+/           %th End_date
+/           %th Delete
+/       %tbody
+/       - @location.cohorts.each do |cohort|
+/         %tr.odd
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :subject, :type => :input
+/           - else
+/             %td= cohort.subject
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :teacher, :type => :input
+/           - else
+/             %td= cohort.teacher
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :start_date, :type => :input
+/           - else
+/             %td= cohort.start_date
+/           - if current_user.cohort_id == cohort.id
+/             %td.center= link_to cohort.subject, cohort
+/           - else
+/             %td= cohort.subject
+/           - if can? :manage, cohort
+/             %td.center= link_to "Delete", cohort, :remote => true, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
+/           - else
+/             %td Edit
+
+/ .row
+/   .col-sm-12.col-lg-12
+/     %h4
+/       %strong 
+/     %table.display
+/       %thead
+/         %tr
+/           %th Subject
+/           %th Teacher
+/           %th Start_date
+/           %th End_date
+/           %th Delete
+/       %tbody
+/       - @location.cohorts.each do |cohort|
+/         %tr.odd
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :subject, :type => :input
+/           - else
+/             %td= cohort.subject
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :teacher, :type => :input
+/           - else
+/             %td= cohort.teacher
+/           - if can? :manage, cohort
+/             %td= best_in_place cohort, :start_date, :type => :input
+/           - else
+/             %td= cohort.start_date
+/           %td.center= link_to cohort.subject, cohort
+/           - if can? :manage, cohort
+/             %td.center= link_to "Delete", cohort, :remote => true, :confirm => 'Are you sure?', :method => :delete
+/           - else
+/             %td Edit
+
+
+    

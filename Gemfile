@@ -12,7 +12,12 @@ group :production do
   gem 'rails_12factor'
 end
 # Use SCSS for stylesheets
+gem 'best_in_place', github: 'bernat/best_in_place'
+
+gem 'remotipart', '~> 1.2'
 gem 'carrierwave'
+gem 'cancancan', '~> 1.8'
+
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,6 +28,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
+gem 'jquery-turbolinks'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -39,6 +45,14 @@ gem 'spring',        group: :development
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
+
+
+group :test do
+	gem 'rspec-rails'
+	gem 'capybara'
+	gem 'factory_girl_rails'
+end
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

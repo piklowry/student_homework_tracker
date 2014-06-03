@@ -1,0 +1,29 @@
+/ %h1 Hi the main page that will display all the cohort classes
+
+/ = link_to "Go to All Assignments for this Cohort", cohorts_path
+
+/ #cohorts_list= render :partial => "cohorts"
+/ / #this is for everything else
+
+/ #cohort_form= render :partial => "form"
+/ / #this is for editing
+
+
+.row
+  .col-sm-12.col-lg-12
+    %h4
+      %strong 
+    %table.display
+      %thead
+        %tr
+          %th Subject
+          %th Teacher
+          %th Start_date
+          %th End_date
+          %th Delete
+      %tbody
+      - @cohorts.each do |cohort|
+        %tr.odd
+          %td= best_in_place cohort, :subject, :type => :input
+          %td= cohort.subject
+          %td.center= link_to "Delete", cohort, :remote => true, :confirm => 'Are you sure?', :method => :delete

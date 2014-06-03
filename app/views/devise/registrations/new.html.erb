@@ -1,4 +1,17 @@
-<h2>Sign up</h2>
+
+          </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+      <div class="col-lg-offset-4 col-lg-4" style="margin-top:100px">
+        <div class="block-unit" style="text-align:center; padding:8px 8px 8px 8px;">
+          <img class="img-circle" <%= image_tag('ironyardtwo.jpg', :style => "height:140px; width:140px;") %></img>
+          <br>
+          <br>
+      
+        <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -11,8 +24,32 @@
 
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <br>
 
+<div><%= f.label "Add Your Photo" %><br/>
+
+ <div class="something" style="margin-left:310px;"><%= f.file_field :photo_pic %></div>
+ <br>
+    
+    
+    <div><%= f.label "Add you role" %><br />
+<div><%= f.collection_select :role, User::ROLES, :to_s, :humanize %></div>
+<br>
+<div><%= f.label "Assign a Cohort" %><br />
+<div><%= f.select :cohort_id, Cohort.all.collect {|c| [c.subject, c.id] } %></div>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
+</div>
+        
+        </div>
 
-<%= render "devise/shared/links" %>
+      </div>
+
+
+        </div>
+    </div>
+
+
+
+
+

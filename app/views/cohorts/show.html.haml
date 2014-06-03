@@ -1,0 +1,55 @@
+.row
+  .col-sm-12.col-lg-12
+    %h4
+      %strong Assignments
+    %table.display
+      %thead
+        %tr
+          %th Assignment
+          %th Description
+          %th Due_date
+          %th Link Icon
+          %th Remove
+      %tbody
+      - @cohort.assignments.each do |assignment|
+        %tr.odd
+          - if can? :manage, assignment
+            %td= best_in_place assignment, :title, :type => :input
+          - else
+            %td= assignment.title
+          - if can? :manage, assignment
+            %td= best_in_place assignment, :description, :type => :input
+          - else
+            %td= assignment.description
+          - if can? :manage, assignment
+            %td= best_in_place assignment, :due_date, :type => :input
+          - else
+            %td= assignment.due_date
+          %td= link_to assignment.title, assignment
+          - if can? :manage, assignment
+            %td.center= link_to "Delete", assignment, :remote => true, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
+          - else
+            %td Delete
+
+
+%br
+%br
+
+= form_for @assignment do |assignment|
+  = assignment.hidden_field :cohort_id
+  = assignment.hidden_field :title
+  = assignment.hidden_field :description
+  = assignment.hidden_field :due_date
+  = assignment.submit "Hey Teacher, Add a New Row and Create a New Assignment Inline", :method => "POST", :onSubmit => "window.location.href=window.location.href"
+
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+

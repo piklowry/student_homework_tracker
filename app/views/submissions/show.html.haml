@@ -1,0 +1,41 @@
+%br
+%br
+.col-xs-1.col-sm-12
+  .panel.panel-default
+    .panel-body
+      %p.lead
+      = best_in_place @submission, :title, :type => :input
+      %br
+      %br
+      = best_in_place @submission, :all_work, :type => :input 
+      %br
+      / = best_in_place @submission, :all_work, :type => :textarea, :display_as => :md_submission
+      / %br
+      / / = @event.description
+      / / - @event.comments.each do |t|
+      / /   = t.message
+      / /   %br
+      / /   %br
+
+
+%br
+%br
+.col-xs-1.col-sm-12
+  .panel.panel-default
+    .panel-body
+      %p.lead
+      %br
+      %br
+      - @submission.comments.each do |t|
+        = best_in_place t, :message, :type => :input
+        %br
+        %br
+
+
+      .container{:style => "float:center;"}
+        = form_for @new_comment do |f|
+          = f.hidden_field :commentable_id, value: @new_comment.commentable_id
+          = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+          = f.text_field :message
+          = f.submit "Comment!"
+      %br

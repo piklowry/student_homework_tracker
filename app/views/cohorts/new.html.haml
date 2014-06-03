@@ -1,0 +1,7 @@
+#cohort_form
+	= form_for @cohort, url: cohorts_path, :remote => true do |f|
+		= f.hidden_field :location_id, value: params[:location_id]
+		= f.label "adfasdf"
+		= f.text_field :subject
+		
+		= f.submit "Add Cohort"

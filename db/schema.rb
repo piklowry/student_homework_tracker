@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529010528) do
+ActiveRecord::Schema.define(version: 20140602031321) do
 
   create_table "assignments", force: true do |t|
     t.string  "title"
@@ -20,19 +20,38 @@ ActiveRecord::Schema.define(version: 20140529010528) do
     t.date    "due_date"
     t.integer "user_id"
     t.date    "date_assigned"
+    t.integer "cohort_id"
   end
 
   create_table "cohorts", force: true do |t|
-    t.string "subject"
-    t.string "city"
-    t.date   "start_date"
-    t.date   "end_date"
+    t.string  "subject"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "location_id"
+    t.string  "teacher"
   end
 
   create_table "comments", force: true do |t|
     t.string  "message"
     t.integer "commentable_id"
     t.string  "commentable_type"
+    t.integer "user_id"
+  end
+
+  create_table "locations", force: true do |t|
+    t.string  "city"
+    t.string  "state"
+    t.integer "cohort_id"
+  end
+
+  create_table "submissions", force: true do |t|
+    t.integer "user_id"
+    t.integer "assignment_id"
+    t.string  "title"
+    t.string  "github_link"
+    t.text    "all_work"
+    t.boolean "completed",     default: false
+    t.string  "finished"
   end
 
   create_table "users", force: true do |t|
@@ -49,6 +68,8 @@ ActiveRecord::Schema.define(version: 20140529010528) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_pic"
+    t.integer  "cohort_id"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

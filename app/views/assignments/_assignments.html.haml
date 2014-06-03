@@ -1,0 +1,26 @@
+- @assignments.each do |assignment|
+	= link_to assignment.title, assignments
+	%br
+	= assignment.description
+	%br
+	= assignment.due_date
+	%br
+	= link_to "Edit", edit_assignment_path(assignment),:remote => true
+	%br
+	= link_to "Remove", assignment, :remote => true, :confirm => 'Are you sure?', :method => :delete
+	%br
+	%br
+
+- @assignments.each do |assignment|
+	= assignment.title
+	= assignment.description
+	= assignment.due_date
+	- if can? :update, @assignment
+		= link_to "Edit", edit_assignment_path(assignment),:remote => true
+	- else 
+		%h4 Edit
+	- if can? :delete, @assignment
+		= link_to "Remove", assignment, :remote => true, :confirm => 'Are you sure?', :method => :delete
+	- else 
+		%h4 Delete
+

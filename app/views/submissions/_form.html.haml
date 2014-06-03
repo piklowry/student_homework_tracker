@@ -1,0 +1,12 @@
+= form_for @submission, :remote => true do |submission|
+		%br
+		= submission.label :city
+		%br
+		= submission.text_field :city
+		%p
+		= submission.label :state
+		%br
+		= submission.text_field :state
+		%br
+		= submission.submit "Create New", :method => "POST"
+

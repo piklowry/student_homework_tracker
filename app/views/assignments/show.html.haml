@@ -1,0 +1,149 @@
+%h4 Assignments for #{@assignment.title}
+
+
+.row
+  .col-sm-12.col-lg-12
+    %h4
+      %strong Submissions
+    %table.display
+      %thead
+        %tr
+          %th.center User
+          %th Github Link
+          %th Go to Github
+          %th Finished?
+          %th View Work
+          %th Delete
+      %tbody
+      - @assignment.submissions.includes(:user).each do |submission|
+        %tr.odd
+          %td= image_tag submission.user.photo_pic.url,:style => "border-radius: 50%; height:50px; width:50px"
+          - if can? :manage, submission
+            %td= best_in_place submission, :github_link, :type => :input
+            %td= link_to submission.github_link, url_for(submission.github_link)
+          - else
+            %td= submission.github_link
+          - if can? :manage, submission
+            %td= best_in_place submission, :finished, :type => :input
+          - else
+            %td= submission.finished
+          %td= link_to "View Assignment", submission
+          - if can? :manage, submission
+            %td.center= link_to "Delete", submission, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
+          - else
+            %td Delete
+
+/ = link_to "View Assignment", submission
+
+= form_for @submission do |submission|
+  = submission.hidden_field :assignment_id
+  = submission.hidden_field :assignment_id
+  %br
+  = submission.label :Submit_Your_Homework
+  %br
+  = submission.text_field :title
+  %br
+  = submission.submit "Create New", :method => "POST", :onSubmit => "window.location.href=window.location.href"
+
+
+
+%br
+%br
+.col-xs-1.col-sm-12
+  .panel.panel-default
+    .panel-body
+      %p.lead
+      %br
+      %br
+      - @assignment.comments.each do |t|
+        = best_in_place t, :message, :type => :input
+        %br
+        %br
+
+
+      .container{:style => "float:center;"}
+        = form_for @new_comment do |f|
+          = f.hidden_field :commentable_id, value: @new_comment.commentable_id
+          = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+          = f.text_field :message
+          = f.submit "Comment!"
+      %br
+
+
+
+/ %br
+/ %br
+/ .col-xs-1.col-sm-12
+/   .panel.panel-default
+/     .panel-body
+/       %p.lead
+/       %br
+/       %br
+/       - @assignment.comments.includes(:user).each do |comment|
+/         = image_tag comment.user.photo_pic.url,:style => "border-radius: 50%; height:50px; width:50px" 
+/         = best_in_place comment, :message, :type => :input
+/         %br
+/         %br
+
+
+/       .container{:style => "float:center;"}
+/         = form_for @new_comment do |f|
+/           = f.hidden_field :commentable_id, value: @new_comment.commentable_id
+/           = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+/           = f.text_field :message
+/           = f.submit "Comment!"
+/       %br
+
+
+
+/ %h4 Assignments for #{@assignment.title}
+
+/ .row
+/   .col-sm-12.col-lg-12
+/     %h4
+/       %strong Locations
+/     %table.display
+/       %thead
+/         %tr
+/           %th.center User
+/           %th Description
+/           %th Due_date
+/           %th Link Icon
+/           %th Remove
+/           %th Maybe Student Count
+/       %tbody
+/       - @assignment.submissions.includes(:user).each do |submission|
+/         %tr.odd
+/           %td= image_tag submission.user.photo_pic.url,:style => "border-radius: 50%; height:50px; width:50px"
+/           - if can? :manage, submission
+/             %td= best_in_place submission, :title, :type => :input
+/           - else
+/             %td= submission.title
+/           - if can? :manage, submission
+/             %td= best_in_place submission, :title, :type => :input
+/           - else
+/             %td= submission.title
+/           - if can? :manage, submission
+/             %td= best_in_place submission, :title, :type => :input
+/           - else
+/             %td= submission.title
+/           - if user.submission.title
+/             %td= link_to submission.title, submission
+/           - else
+/             = submission.title
+/           - if can? :manage, submission
+/             %td.center= link_to "Delete", submission, :remote => true, :confirm => 'Are you sure?', :method => :delete
+/           - else
+/           %td Delete
+/ = @assignment.submissions.users.photo_pic
+
+/ - @assignment.submissions.each do |submission|
+/ 	= best_in_place submission, :title, :type => :input
+/ 	%br
+/ 	= link_to submission.title, submission
+/ 	%br
+
+/ %h1l nested assignment and submission form
+
+
+
