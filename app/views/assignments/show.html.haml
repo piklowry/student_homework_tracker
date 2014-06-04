@@ -55,7 +55,8 @@
       %p.lead
       %br
       %br
-      - @assignment.comments.each do |t|
+      - @assignment.comments.includes(:user).each do |t|
+        = image_tag t.user.photo_pic.url,:style => "border-radius: 50%; height:50px; width:50px"
         = best_in_place t, :message, :type => :input
         %br
         %br
@@ -65,6 +66,7 @@
         = form_for @new_comment do |f|
           = f.hidden_field :commentable_id, value: @new_comment.commentable_id
           = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+          = f.hidden_field :user_id, value: current_user.id
           = f.text_field :message
           = f.submit "Comment!"
       %br

@@ -15,11 +15,11 @@ class CommentsController < ApplicationController
 
 def create
   @new_comment = Comment.new(comment_params)
-  @new_comment.user_id = current_user.id
+  @new_comment.user_id = current_user.id # you can do this here OR in your form
   if @new_comment.save
-  redirect_to :back
+    redirect_to :back
   else
-  render assignment_path
+    render assignment_path
   end
 end
 

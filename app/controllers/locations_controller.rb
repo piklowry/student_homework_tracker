@@ -13,8 +13,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-    @cohort = @location.cohorts.build
-
+    # @cohort = @location.cohorts.build
   end
 
   def create

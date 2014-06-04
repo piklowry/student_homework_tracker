@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   #   resources :submissions, :path => "one_student_submission"      
   resources :comments
 
-  resources :locations, :path => "all_cohorts" 
-  resources :cohorts, :path => "all_teachers_assignments" 
-  resources :assignments, :path => "all_student_submissions" 
-  resources :submissions, :path => "one_student_submission"      
+  resources :locations
+  resources :cohorts
+  resources :assignments 
+  resources :submissions     
   
   #   resources :locations 
   # resources :cohorts 

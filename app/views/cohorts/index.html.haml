@@ -26,4 +26,6 @@
         %tr.odd
           %td= best_in_place cohort, :subject, :type => :input
           %td= cohort.subject
+          %td= cohort.start_date
+          %td= cohort.end_date
           %td.center= link_to "Delete", cohort, :remote => true, :confirm => 'Are you sure?', :method => :delete

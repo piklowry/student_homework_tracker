@@ -11,9 +11,9 @@
       %thead
         %tr
           %th Subject
+          %th View
           %th Teacher
           %th Start_date
-          %th End_date
           %th Delete
       %tbody
       - @location.cohorts.each do |cohort|
@@ -22,27 +22,28 @@
             %td= best_in_place cohort, :subject, :type => :input
           - else
             %td= cohort.subject
+
+          %td= link_to cohort.subject, cohort
+
           - if can? :manage, cohort
             %td= best_in_place cohort, :teacher, :type => :input
           - else
             %td= cohort.teacher
+
           - if can? :manage, cohort
-            %td= link_to cohort.subject, cohort
+            %td= best_in_place cohort, :start_date, :type => :input
           - else
             %td= cohort.start_date
-          - if current_user.cohort_id == cohort.id
-            %td.center= link_to cohort.subject, cohort
-          - else
-            %td= cohort.subject
+
           - if can? :manage, cohort
             %td.center= link_to "Delete", cohort, :confirm => 'Are you sure?', :method => :delete, :onSubmit => "window.location.href=window.location.href"
           - else
-            %td Edit
+            %td
 
 %br
 
-= form_for @cohort do |cohort|
-  = cohort.hidden_field :location_id
+= form_for Cohort.new do |cohort|
+  = cohort.hidden_field :location_id, value: @location.id
   = cohort.hidden_field :start_date
   = cohort.hidden_field :end_date
   = cohort.submit "Hello Admin, Add a New Row and Create a New Course Inline", :method => "POST", :onSubmit => "window.location.href=window.location.href"
